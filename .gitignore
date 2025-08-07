@@ -2,10 +2,4 @@
 Pktgen-DPDK/app/meson.build
 
 # Ignore ninja build files and logs
-Pktgen-DPDK/build/.ninja_deps
-Pktgen-DPDK/build/.ninja_log
-Pktgen-DPDK/build/meson-logs/meson-log.txt
-Pktgen-DPDK/build/meson-private/build.dat
-Pktgen-DPDK/build/meson-private/cmake_numa/CMakeCache.txt
-Pktgen-DPDK/build/meson-private/cmake_numa/CMakeFiles/Makefile.cmake
-Pktgen-DPDK/build/meson-private/coredata.dat
+Pktgen-DPDK/build/*
