@@ -19,3 +19,15 @@ lib/lua/build
 Builddir/
 builddir/
 usr/local
+
+# Ignore meson build files
+app/meson.build
+
+# Ignore ninja build files and logs
+build/.ninja_deps
+build/.ninja_log
+build/meson-logs/meson-log.txt
+build/meson-private/build.dat
+build/meson-private/cmake_numa/CMakeCache.txt
+build/meson-private/cmake_numa/CMakeFiles/Makefile.cmake
+build/meson-private/coredata.dat
