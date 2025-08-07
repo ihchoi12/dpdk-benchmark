@@ -6,27 +6,38 @@ package.path = package.path ..";?.lua;test/?.lua;app/?.lua;../?.lua"
 
 require "Pktgen";
 
-local port = 2;
+local port = 0;
 local sleeptime = 10
+
+-- Configuration
+pktgen.set(port, "size", 64)
+pktgen.set(port, "rate", 100)
+pktgen.set(port, "count", 0)
+
+pktgen.set_mac(port, "dst", "08:c0:eb:b6:e8:05")
+pktgen.set_mac(port, "src", "08:c0:eb:b6:cd:5d")
+pktgen.set_ipaddr(port, "dst", "10.0.1.8")
+pktgen.set_ipaddr(port, "src", "10.0.1.7/24")
+
 
 pktgen.stop(port);
 
-pktgen.latency(port, "rate", 1000) -- 1000us
-pktgen.latency(port, "entropy", 16) -- adjust sport (sport + (index % N))
+-- pktgen.latency(port, "rate", 1000) -- 1000us
+-- pktgen.latency(port, "entropy", 16) -- adjust sport (sport + (index % N))
 
 printf("Setup port %d for latency packets\n", port);
 pktgen.clr();
 pktgen.delay(100);
 
-pktgen.latency(port, "enable");
+-- pktgen.latency(port, "enable");
 
 pktgen.start(port);
-printf("Sleep for %d seconds\n", sleeptime);
-pktgen.sleep(sleeptime);
-printf("Sleep is done\n");
+-- printf("Sleep for %d seconds\n", sleeptime);
+-- pktgen.sleep(sleeptime);
+-- printf("Sleep is done\n");
 
 pktgen.stop(port);
-pktgen.latency(port, "disable");
+-- pktgen.latency(port, "disable");
 
 printf("Sendport Type: %s\n", type(port));
 prints("SendPort", pktgen.pktStats(port));

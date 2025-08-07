@@ -127,7 +127,7 @@ static struct rte_eth_conf port_conf = {
 	.rx_adv_conf = {
 		.rss_conf = {
 			.rss_key = NULL,
-			.rss_hf = RTE_ETH_RSS_IP,
+			.rss_hf = RTE_ETH_RSS_IP | RTE_ETH_RSS_TCP | RTE_ETH_RSS_UDP,
 		},
 	},
 	.txmode = {
@@ -975,11 +975,7 @@ parse_args(int argc, char **argv)
 		lookup_mode = L3FWD_LOOKUP_LPM;
 	}
 
-	/* For ACL, update port config rss hash filter */
-	if (lookup_mode == L3FWD_LOOKUP_ACL) {
-		port_conf.rx_adv_conf.rss_conf.rss_hf |=
-				RTE_ETH_RSS_UDP | RTE_ETH_RSS_TCP | RTE_ETH_RSS_SCTP;
-	}
+	/* RSS hash filter now includes TCP/UDP ports for all modes */
 
 	if (optind >= 0)
 		argv[optind-1] = prgname;
@@ -1358,7 +1354,7 @@ l3fwd_poll_resource_setup(void)
 			else
 				socketid = 0;
 
-			printf("txq=%u,%d,%d ", lcore_id, queueid, socketid);
+			printf("txq=core %u, queue %d, socket %d\n", lcore_id, queueid, socketid);
 			fflush(stdout);
 
 			txconf = &dev_info.default_txconf;
@@ -1399,7 +1395,7 @@ l3fwd_poll_resource_setup(void)
 			else
 				socketid = 0;
 
-			printf("rxq=%d,%d,%d ", portid, queueid, socketid);
+			printf("rxq=port %d, queue %d, socket %d ", portid, queueid, socketid);
 			fflush(stdout);
 
 			ret = rte_eth_dev_info_get(portid, &dev_info);
