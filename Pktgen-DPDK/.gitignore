@@ -25,3 +25,4 @@ app/meson.build
 
 # Ignore ninja build files and logs
 build/*
+logs/
