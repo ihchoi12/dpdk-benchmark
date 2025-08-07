@@ -1,2 +1,0 @@
-/homes/inho/Autokernel/dpdk-benchmark/Pktgen-DPDK/build/meson-private/cmake_numa/CMakeFiles/rebuild_cache.dir
-/homes/inho/Autokernel/dpdk-benchmark/Pktgen-DPDK/build/meson-private/cmake_numa/CMakeFiles/edit_cache.dir

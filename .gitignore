@@ -1,5 +1,4 @@
 # Ignore meson build files
 Pktgen-DPDK/app/meson.build
 
-# Ignore ninja build files and logs
-Pktgen-DPDK/build/*
+Pktgen-DPDK/build/
