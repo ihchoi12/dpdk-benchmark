@@ -1354,7 +1354,8 @@ l3fwd_poll_resource_setup(void)
 			else
 				socketid = 0;
 
-			printf("txq=core %u, queue %d, socket %d\n", lcore_id, queueid, socketid);
+			// printf("txq=core %u, queue %d, socket %d\n", lcore_id, queueid, socketid);
+			printf("[TX] Core %u ==> port %d, queue %d, socket %d\n", lcore_id, portid, queueid, socketid);
 			fflush(stdout);
 
 			txconf = &dev_info.default_txconf;
@@ -1380,7 +1381,7 @@ l3fwd_poll_resource_setup(void)
 		if (rte_lcore_is_enabled(lcore_id) == 0)
 			continue;
 		qconf = &lcore_conf[lcore_id];
-		printf("\nInitializing rx queues on lcore %u ... ", lcore_id );
+		// printf("\nInitializing rx queues on lcore %u ... ", lcore_id );
 		fflush(stdout);
 		/* init RX queues */
 		for(queue = 0; queue < qconf->n_rx_queue; ++queue) {
@@ -1395,7 +1396,7 @@ l3fwd_poll_resource_setup(void)
 			else
 				socketid = 0;
 
-			printf("rxq=port %d, queue %d, socket %d ", portid, queueid, socketid);
+			printf("[RX] Core %u ==> port %d, queue %d, socket %d\n", lcore_id, portid, queueid, socketid);
 			fflush(stdout);
 
 			ret = rte_eth_dev_info_get(portid, &dev_info);
